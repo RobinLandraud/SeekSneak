@@ -183,3 +183,27 @@ DevTools listening on ws://localhost:54116/devtools/browser/abe6bcb3-4fb3-4d26-9
 JavaScript error: https://stockx.com/fr-fr/sneakers/most-popular?page=1, line 43: TypeError: p is null
 1661021893486	Marionette	INFO	Stopped listening on port 54129
 JavaScript error: resource://gre/modules/Sqlite.jsm, line 1109: Error: Sqlite.jsm has been shutdown. Cannot open connection to: C:\Users\robin\AppData\Local\Temp\rust_mozprofile0uCaLx\protections.sqlite
+1661033022896	geckodriver	INFO	Listening on 127.0.0.1:54717
+1661033025954	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "54718" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\robin\\AppData\\Local\\Temp\\rust_mozprofile4AItrz"
+1661033026981	Marionette	INFO	Marionette enabled
+1661033026991	Marionette	INFO	Listening on port 54729
+WebDriver BiDi listening on ws://localhost:54718
+Read port: 54729
+1661033027241	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\robin\\AppData\\Local\\Temp\\rust_mozprofile4AItrz\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:54718/devtools/browser/da853a2e-d092-4ca6-a56f-ff72b13c93bc
+JavaScript error: https://stockx.com/fr-fr/sneakers/most-popular?page=1, line 39: TypeError: p is null
+1661033031440	Marionette	INFO	Stopped listening on port 54729
+JavaScript error: resource://gre/modules/Sqlite.jsm, line 1109: Error: Sqlite.jsm has been shutdown. Cannot open connection to: C:\Users\robin\AppData\Local\Temp\rust_mozprofile4AItrz\protections.sqlite
+1661033066567	geckodriver	INFO	Listening on 127.0.0.1:60738
+1661033069633	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "60739" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\robin\\AppData\\Local\\Temp\\rust_mozprofileSPFmP5"
+1661033070175	Marionette	INFO	Marionette enabled
+1661033070182	Marionette	INFO	Listening on port 60750
+WebDriver BiDi listening on ws://localhost:60739
+Read port: 60750
+1661033070345	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\robin\\AppData\\Local\\Temp\\rust_mozprofileSPFmP5\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:60739/devtools/browser/2271e1cb-47d1-49a1-be97-8f867dc7afa4
+JavaScript error: https://stockx.com/fr-fr/sneakers/most-popular?page=1, line 43: TypeError: p is null
+1661033074629	Marionette	INFO	Stopped listening on port 60750
+JavaScript error: resource://gre/modules/Sqlite.jsm, line 1109: Error: Sqlite.jsm has been shutdown. Cannot open connection to: C:\Users\robin\AppData\Local\Temp\rust_mozprofileSPFmP5\protections.sqlite

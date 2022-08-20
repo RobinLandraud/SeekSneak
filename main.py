@@ -3,6 +3,10 @@ from api import ProductSX, search
 from proxy import getListProxies
 from parser import parser_most_popular
 
+from website import create_app
+
+app = create_app()
+
 def main():
     #data = search("dunk")
     #dunk = ProductSX(data)
@@ -16,4 +20,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=True)
+    #main()
