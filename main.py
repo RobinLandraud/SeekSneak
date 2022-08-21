@@ -5,7 +5,7 @@ app = create_app()
 
 def main():
     #data = search("dunk")
-    #dunk = ProductSX(data)
+    #dunk = APIProductSX(data)
     #dunk.printInfos()
     #most_popular(2)
     print("start")

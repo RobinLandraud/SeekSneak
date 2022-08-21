@@ -1,64 +1,47 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-    <h1>Results for {{ query }}    Sneakers ID: {{ searched.styleID }}</h1>
-    <div class="card-group">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/StockX_logo.svg/2560px-StockX_logo.svg.png" alt="Photo" style="height: auto; width: auto; margin: 10px">
-            <img class="card-img-top" src={{ searched.image }} alt="Photo">
-            <div class="card-body">
-            <h5 class="card-title">{{ searched.name }}</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-            <li class="list-group-item">Color: {{ searched.colorway }} €</li>
-            <li class="list-group-item">Last Sale: {{ searched.lastSale }} €</li>
-            <li class="list-group-item">Lower Ask: {{ searched.lowestAsk }} €</li>
-            <li class="list-group-item">Ask / Bids: {{ searched.nbrAsks }} / {{ searched.nbrBids }} €</li>
-            <li class="list-group-item">Volatility: {{ searched.volatility }}</li>
-            <li class="list-group-item">Sales Last 72 Hours: {{ searched.salesLast72Hours }}</li>
-            <li class="list-group-item">Last Sale Date: {{ searched.lastSaleDate }}</li>
-            </ul>
-            <div class="card-body">
-            <a href={{ searched.url }} class="card-link">Go to StockX</a>
+    {% if captcha == False %}
+    <h1>Results for {{ query }}:</h1>
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <img src={{ searched.image }} alt="Photo" style="height: auto; width: auto; margin: 10px"">
+                </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" style="font-size: 170%;">StyleID: {{ searched.name }} €</li>
+                        <li class="list-group-item" style="font-size: 170%;">StyleID: {{ searched.styleID }} €</li>
+                        <li class="list-group-item" style="font-size: 170%;">Color: {{ searched.colorway }} €</li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/StockX_logo.svg/2560px-StockX_logo.svg.png" alt="Photo" style="height: auto; width: auto; margin: 10px">
-            <img class="card-img-top" src={{ searched.image }} alt="Photo">
-            <div class="card-body">
-            <h5 class="card-title">{{ searched.name }}</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-            <li class="list-group-item">Color: {{ searched.colorway }} €</li>
-            <li class="list-group-item">Last Sale: {{ searched.lastSale }} €</li>
-            <li class="list-group-item">Lower Ask: {{ searched.lowestAsk }} €</li>
-            <li class="list-group-item">Ask / Bids: {{ searched.nbrAsks }} / {{ searched.nbrBids }} €</li>
-            <li class="list-group-item">Volatility: {{ searched.volatility }}</li>
-            <li class="list-group-item">Sales Last 72 Hours: {{ searched.salesLast72Hours }}</li>
-            <li class="list-group-item">Last Sale Date: {{ searched.lastSaleDate }}</li>
-            </ul>
-            <div class="card-body">
-            <a href={{ searched.url }} class="card-link">Go to StockX</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/StockX_logo.svg/2560px-StockX_logo.svg.png" alt="Photo" style="height: auto; width: auto; margin: 10px">
-            <img class="card-img-top" src={{ searched.image }} alt="Photo">
-            <div class="card-body">
-            <h5 class="card-title">{{ searched.name }}</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-            <li class="list-group-item">Color: {{ searched.colorway }} €</li>
-            <li class="list-group-item">Last Sale: {{ searched.lastSale }} €</li>
-            <li class="list-group-item">Lower Ask: {{ searched.lowestAsk }} €</li>
-            <li class="list-group-item">Ask / Bids: {{ searched.nbrAsks }} / {{ searched.nbrBids }} €</li>
-            <li class="list-group-item">Volatility: {{ searched.volatility }}</li>
-            <li class="list-group-item">Sales Last 72 Hours: {{ searched.salesLast72Hours }}</li>
-            <li class="list-group-item">Last Sale Date: {{ searched.lastSaleDate }}</li>
-            </ul>
-            <div class="card-body">
-            <a href={{ searched.url }} class="card-link">Go to StockX</a>
-            </div>
-        </div>
+        <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>Last Sale</th>
+                <th>Lowest Ask</th>
+                <th>Highest Bid</th>
+                <th>Volatility</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for size in searched.sizes %}
+                <tr>
+                    <td>{{ size.size }}</td>
+                    <td>{{ size.lastSale }}</td>
+                    <td>{{ size.lowestAsk }}</td>
+                    <td>{{ size.highestBid }}</td>
+                    <td>{{ size.volatility }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
     </div>
+    {% else %}
+    <h1 align="center">Captcha detected !</h1>
+    <h2 align="center">You have done too many requests to the API</h2>
+    {% endif %}
 {% endblock %}

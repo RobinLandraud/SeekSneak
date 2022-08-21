@@ -3,50 +3,54 @@ import requests
 import json
 from random import randint
 
-class ProductSX:
+class APIProductSX:
+    def __init__(self, item = None, sizes = None) -> None:
+        if item is None or sizes is None:
+            return
+        self.parseDataItem(item, sizes)
+    def parseDataItem(self, item, sizes):
+        self.styleID = item['styleId']
+        self.name = item['name']
+        self.colorway = item['colorway']
+        self.url = 'https://stockx.com/en-gb/' + item['urlKey']
+        self.image = item['media']['smallImageUrl']
+        self.sizes = sizes
+    def printInfos(self):
+        print(f"StyleID: {self.styleID}\n\
+        Name: {self.name}\n\
+        Colorway: {self.colorway}\n\
+        URL: {self.url}\n\
+        Image: {self.image}\
+        ")
+        for size in self.sizes:
+            size.printInfos()
+
+class Size:
     def __init__(self, item = None) -> None:
         if item is None:
             return
         self.parseDataItem(item)
     def parseDataItem(self, item):
-        self.styleID = item['styleId']
-        self.name = item['shortDescription']
+        self.size = item['shoeSize']
         self.lastSale = item['market']['lastSale']
-        self.colorway = item['colorway']
-        self.url = 'https://stockx.com/en-gb/' + item['urlKey']
         self.lowestAsk = item['market']['lowestAsk']
-        self.image = item['media']['smallImageUrl']
-        self.uuid = item['market']['productUuid']
-        self.nbrAsks = item['market']['numberOfAsks']
-        self.nbrBids = item['market']['numberOfBids']
         self.volatility = item['market']['volatility']
-        self.salesLast72Hours = item['market']['salesLast72Hours']
-        self.lastSaleDate = item['market']['lastSaleDate']
+        self.highestBid = item['market']['highestBid']
     def printInfos(self):
-        print(f"StyleID: {self.styleID}\n\
-        Name: {self.name}\n\
+        print(f"Size: {self.size}\n\
         Last Sale: {self.lastSale}\n\
-        Colorway: {self.colorway}\n\
-        URL: {self.url}\n\
         Lowest Ask: {self.lowestAsk}\n\
-        Image: {self.image}\n\
-        UUID: {self.uuid}\n\
-        Number of Asks: {self.nbrAsks}\n\
-        Number of Bids: {self.nbrBids}\n\
         Volatility: {self.volatility}\n\
-        Sales in last 72 Hours: {self.salesLast72Hours}\n\
-        Last Sale Date: {self.lastSaleDate}\n\
+        Highest Bid: {self.highestBid}\
         ")
 
 def APIsearch(query, proxies):
-    url = f'https://stockx.com/api/browse?_search={query}'
-
     headers = {
         'accept': 'application/json',
         'accept-encoding': 'utf-8',
         'accept-language': 'en-GB,en;q=0.9',
         'app-platform': 'Iron',
-        'referer': 'https://stockx.com/en-gb',
+        'referer': 'https://stockx.com/fr-fr',
         'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="102", "Google Chrome";v="102"',
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Windows"',
@@ -56,8 +60,26 @@ def APIsearch(query, proxies):
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36',
         'x-requested-with': 'XMLHttpRequest'
     }
+    url = f'https://stockx.com/api/browse?_search={query}'
     html = requests.get(url=url, headers=headers, proxies=proxies[randint(0, len(proxies) - 1)])
     output = json.loads(html.text)
     if "captcha" in str(output):
+        print("captcha !")
         return None
-    return output['Products'][0]
+
+    url2 = f"https://stockx.com/api/products/{output['Products'][0]['urlKey']}?includes=market&currency=EUR&country=FR"
+    html2 = requests.get(url=url2, headers=headers, proxies=proxies[randint(0, len(proxies) - 1)])
+    output2 = json.loads(html2.text)
+    if "captcha" in str(output):
+        print("captcha !")
+        return None
+
+    sizes = output2['Product']['children']
+    sizeList = []
+    for size in sizes:
+        new_size = Size(sizes[size])
+        sizeList.append(new_size)
+
+    result = APIProductSX(output['Products'][0], sizeList)
+    print("request done")
+    return result

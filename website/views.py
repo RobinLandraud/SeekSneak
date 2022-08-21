@@ -4,13 +4,17 @@ from .models import Note
 from . import db, proxies
 import json
 from .webforms import SearchForm
-from StockX.api import ProductSX, APIsearch
+from StockX.api import APIProductSX, APIsearch
+from StockX.parser import parser_most_popular
+from Restocks.api import APIsearchSKU
 
 views = Blueprint('views', __name__)
 
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
+    #shoes = parser_most_popular(2, proxies)
+    #APIsearchSKU("DD1391-100", proxies)
     if request.method == 'POST':
         note = request.form.get('note')
 
@@ -39,12 +43,14 @@ def delete_note():
 @views.route('/search', methods=['POST'])
 def search():
     form = SearchForm()
+    result = None
     if form.validate_on_submit():
         query = form.searched.data
-        response = APIsearch(query, proxies)
-        if (response is None):
-            return redirect(url_for('views.home'))
-        result = ProductSX(response)
+        result = APIsearch(query, proxies)
+        if (result is None):
+            print("error")
+            return render_template("search.html", searched=result, user=current_user, query=query, captcha=True)
         result.printInfos()
-        return render_template("search.html", searched=result, user=current_user, query=query)
+        print("API done")
+        return render_template("search.html", searched=result, user=current_user, query=query, captcha=False)
     return redirect(url_for('views.home'))
