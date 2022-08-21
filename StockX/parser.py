@@ -3,7 +3,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.keys import Keys
 import time
 from bs4 import BeautifulSoup
-from api import search, ProductSX
+from api import APIsearch, ProductSX
 
 def parser_most_popular_page(index):
     result = []
@@ -22,7 +22,7 @@ def parser_most_popular(nbr, proxies):
     for i in range(1, nbr + 1):
         elements = parser_most_popular_page(i)
         for elem in elements:
-            shoes = search(elem, proxies)
+            shoes = APIsearch(elem, proxies)
             if shoes is not None:
                 prod = ProductSX(shoes)
                 prod.printInfos()

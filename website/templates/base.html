@@ -37,6 +37,15 @@
                     <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
                     {% endif %}
                 </div>
+                {% if user.is_authenticated %}
+                <div class="col-xs-3" style="margin-left: auto; margin-right: 0;">
+                  <form method="POST" action="{{ url_for('views.search')}}" class="d-flex">
+                    {{ form.hidden_tag() }}
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                  </form>
+                </div>
+                {% endif %}
             </div>
         </nav>
 

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <h1>Results for {{ query }}    Sneakers ID: {{ searched.styleID }}</h1>
+    <div class="card-group">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/StockX_logo.svg/2560px-StockX_logo.svg.png" alt="Photo" style="height: auto; width: auto; margin: 10px">
+            <img class="card-img-top" src={{ searched.image }} alt="Photo">
+            <div class="card-body">
+            <h5 class="card-title">{{ searched.name }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item">Color: {{ searched.colorway }} €</li>
+            <li class="list-group-item">Last Sale: {{ searched.lastSale }} €</li>
+            <li class="list-group-item">Lower Ask: {{ searched.lowerAsk }} €</li>
+            <li class="list-group-item">Ask / Bids: {{ searched.nbrAsks }} / {{ searched.nbrBids }} €</li>
+            <li class="list-group-item">Volatility: {{ searched.volatility }}</li>
+            <li class="list-group-item">Sales Last 72 Hours: {{ searched.salesLast72Hours }}</li>
+            <li class="list-group-item">Last Sale Date: {{ searched.lastSaleDate }}</li>
+            </ul>
+            <div class="card-body">
+            <a href={{ searched.url }} class="card-link">Go to StockX</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/StockX_logo.svg/2560px-StockX_logo.svg.png" alt="Photo" style="height: auto; width: auto; margin: 10px">
+            <img class="card-img-top" src={{ searched.image }} alt="Photo">
+            <div class="card-body">
+            <h5 class="card-title">{{ searched.name }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item">Color: {{ searched.colorway }} €</li>
+            <li class="list-group-item">Last Sale: {{ searched.lastSale }} €</li>
+            <li class="list-group-item">Lower Ask: {{ searched.lowerAsk }} €</li>
+            <li class="list-group-item">Ask / Bids: {{ searched.nbrAsks }} / {{ searched.nbrBids }} €</li>
+            <li class="list-group-item">Volatility: {{ searched.volatility }}</li>
+            <li class="list-group-item">Sales Last 72 Hours: {{ searched.salesLast72Hours }}</li>
+            <li class="list-group-item">Last Sale Date: {{ searched.lastSaleDate }}</li>
+            </ul>
+            <div class="card-body">
+            <a href={{ searched.url }} class="card-link">Go to StockX</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/StockX_logo.svg/2560px-StockX_logo.svg.png" alt="Photo" style="height: auto; width: auto; margin: 10px">
+            <img class="card-img-top" src={{ searched.image }} alt="Photo">
+            <div class="card-body">
+            <h5 class="card-title">{{ searched.name }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item">Color: {{ searched.colorway }} €</li>
+            <li class="list-group-item">Last Sale: {{ searched.lastSale }} €</li>
+            <li class="list-group-item">Lower Ask: {{ searched.lowerAsk }} €</li>
+            <li class="list-group-item">Ask / Bids: {{ searched.nbrAsks }} / {{ searched.nbrBids }} €</li>
+            <li class="list-group-item">Volatility: {{ searched.volatility }}</li>
+            <li class="list-group-item">Sales Last 72 Hours: {{ searched.salesLast72Hours }}</li>
+            <li class="list-group-item">Last Sale Date: {{ searched.lastSaleDate }}</li>
+            </ul>
+            <div class="card-body">
+            <a href={{ searched.url }} class="card-link">Go to StockX</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

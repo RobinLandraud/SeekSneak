@@ -1,8 +1,10 @@
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
 from .models import Note
-from . import db
+from . import db, proxies
 import json
+from .webforms import SearchForm
+from StockX.api import ProductSX, APIsearch
 
 views = Blueprint('views', __name__)
 
@@ -33,3 +35,16 @@ def delete_note():
             db.session.commit()
 
     return jsonify({})
+
+@views.route('/search', methods=['POST'])
+def search():
+    form = SearchForm()
+    if form.validate_on_submit():
+        query = form.searched.data
+        response = APIsearch(query, proxies)
+        if (response is None):
+            return redirect(url_for('views.home'))
+        result = ProductSX(response)
+        result.printInfos()
+        return render_template("search.html", searched=result, user=current_user, query=query)
+    return redirect(url_for('views.home'))

@@ -10,6 +10,7 @@ class ProductSX:
         self.parseDataItem(item)
     def parseDataItem(self, item):
         self.styleID = item['styleId']
+        self.name = item['shortDescription']
         self.lastSale = item['market']['lastSale']
         self.colorway = item['colorway']
         self.url = 'https://stockx.com/en-gb/' + item['urlKey']
@@ -17,12 +18,13 @@ class ProductSX:
         self.image = item['media']['smallImageUrl']
         self.uuid = item['market']['productUuid']
         self.nbrAsks = item['market']['numberOfAsks']
-        self.nbrbids = item['market']['numberOfBids']
+        self.nbrBids = item['market']['numberOfBids']
         self.volatility = item['market']['volatility']
         self.salesLast72Hours = item['market']['salesLast72Hours']
         self.lastSaleDate = item['market']['lastSaleDate']
     def printInfos(self):
         print(f"StyleID: {self.styleID}\n\
+        Name: {self.name}\n\
         Last Sale: {self.lastSale}\n\
         Colorway: {self.colorway}\n\
         URL: {self.url}\n\
@@ -30,13 +32,13 @@ class ProductSX:
         Image: {self.image}\n\
         UUID: {self.uuid}\n\
         Number of Asks: {self.nbrAsks}\n\
-        Number of Bids: {self.nbrbids}\n\
+        Number of Bids: {self.nbrBids}\n\
         Volatility: {self.volatility}\n\
         Sales in last 72 Hours: {self.salesLast72Hours}\n\
         Last Sale Date: {self.lastSaleDate}\n\
         ")
 
-def search(query, proxies):
+def APIsearch(query, proxies):
     url = f'https://stockx.com/api/browse?_search={query}'
 
     headers = {
