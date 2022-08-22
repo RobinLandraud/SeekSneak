@@ -2,9 +2,9 @@ from bs4 import BeautifulSoup
 import requests
 import json
 from random import randint
-from Sizing.SizeChart import MenChartUEtoUS
+from Sizing.SizeChart import MenChartUEtoUS, WomenChartUEtoUS
 
-def parseRProductPageSizes(url, proxies):
+def parseRProductPageSizes(url, gender, brand, proxies):
     headers = {
         'accept': 'application/json',
         'accept-encoding': 'utf-8',
@@ -25,16 +25,23 @@ def parseRProductPageSizes(url, proxies):
     sizes = []
     blocks = soup.find("ul", class_="select__size__list").find_all("li")
     for block in blocks:
-        size = (str(block.find("span"))[19:-7]).replace(" ½", ".5")
+        size = (str(block.find("span"))[19:-7]).replace(" ½", ".5").replace(" ⅓", " 1/3").replace(" ⅔", " 2/3")
         price = block.find("span", class_="float-right price")
         res = str(price)[32:-7]
         if res != "Informez-moi":
             res = str(price.find("span"))[15:-7]
         else:
             res = "?"
-        sizes.append({
-            'shoeSize': f"{size} EU / {MenChartUEtoUS(float(size))} US",
-            'price': res,
-            'stock': "1+"
-        })
+        if gender == "men":
+            sizes.append({
+                'shoeSize': f"{size} EU / {MenChartUEtoUS(size, brand)} US",
+                'price': res,
+                'stock': "1+"
+            })
+        else:
+            sizes.append({
+                'shoeSize': f"{size} EU / {WomenChartUEtoUS(size, brand)} US",
+                'price': res,
+                'stock': "1+"
+            })
     return sizes

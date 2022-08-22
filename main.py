@@ -8,7 +8,6 @@ def main():
     #dunk = APIProductSX(data)
     #dunk.printInfos()
     #most_popular(2)
-    #print("start")
     #parser_most_popular(1, proxies)
     parse()
     #most_popular(2, proxies)

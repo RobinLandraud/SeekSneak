@@ -80,12 +80,12 @@ def getInfosfromSKU(sku, proxies):
     }
     return infos
 
-def APIsearchR(sku, proxies):
+def APIsearchR(sku, gender, brand, proxies):
     sizes = []
     infos = getInfosfromSKU(sku, proxies)
     if infos is None:
         return None
-    dictSizes = parseRProductPageSizes(infos['url'], proxies)
+    dictSizes = parseRProductPageSizes(infos['url'], gender, brand, proxies)
     if dictSizes is None:
         return None
     for dictSize in dictSizes:

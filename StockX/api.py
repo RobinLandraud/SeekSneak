@@ -2,14 +2,15 @@ from bs4 import BeautifulSoup
 import requests
 import json
 from random import randint
-from Sizing.SizeChart import MenChartUStoEU
+from Sizing.SizeChart import MenChartUStoEU, WomenChartUStoEU
 
 class APIProductSX:
-    def __init__(self, item = None, sizes = None) -> None:
-        if item is None or sizes is None:
+    def __init__(self, item = None, sizes = None, brand = "nike") -> None:
+        if item is None or sizes is None or brand is None:
             return
-        self.parseDataItem(item, sizes)
-    def parseDataItem(self, item, sizes):
+        self.parseDataItem(item, sizes, brand)
+    def parseDataItem(self, item, sizes, brand):
+        self.brand = brand
         self.styleID = item['styleId']
         self.name = item['title']
         self.gender = item['gender']
@@ -30,13 +31,17 @@ class APIProductSX:
             size.printInfos()
 
 class Size:
-    def __init__(self, item = None) -> None:
+    def __init__(self, item = None, gender = "men", brand = "nike") -> None:
         if item is None:
             return
-        self.parseDataItem(item)
-    def parseDataItem(self, item):
-        self.size = item['shoeSize']
-        self.size = f"{MenChartUStoEU(float(item['shoeSize']))} EU / {item['shoeSize']} US"
+        self.parseDataItem(item, gender, brand)
+    def parseDataItem(self, item, gender, brand):
+        if gender == "men":
+            print("is men")
+            self.size = f"{MenChartUStoEU(item['shoeSize'], brand)} EU / {item['shoeSize']} US"
+        else:
+            print("is women")
+            self.size = f"{WomenChartUStoEU(str(item['shoeSize']).replace('W', ''), brand)} EU / {item['shoeSize']} US"
         self.lastSale = item['market']['lastSale']
         self.lowestAsk = item['market']['lowestAsk']
         self.volatility = item['market']['volatility']
@@ -89,9 +94,9 @@ def APIsearchSX(query, proxies):
     sizeList = []
     for size in sizes:
         if str(sizes[size]['shoeSize']).find("2E") == -1 and str(sizes[size]['shoeSize']).find("3E") == -1:
-            new_size = Size(sizes[size])
+            new_size = Size(sizes[size], str(output['Products'][0]['gender']), str(output2['Product']['brand']))
             sizeList.append(new_size)
 
-    result = APIProductSX(output['Products'][0], sizeList)
+    result = APIProductSX(output['Products'][0], sizeList, str(output2['Product']['brand']))
     print("request done")
     return result

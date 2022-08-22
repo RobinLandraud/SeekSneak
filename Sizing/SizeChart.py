@@ -1,40 +1,115 @@
-Menchart = [
-    {'EU': 35.5, 'US': 3.5},
-    {'EU': 36, 'US': 4},
-    {'EU': 36.5, 'US': 4.5},
-    {'EU': 37.5, 'US': 5},
-    {'EU': 38, 'US': 5.5},
-    {'EU': 38.5, 'US': 6},
-    {'EU': 39, 'US': 6.5},
-    {'EU': 40, 'US': 7},
-    {'EU': 40.5, 'US': 7.5},
-    {'EU': 41, 'US': 8},
-    {'EU': 42, 'US': 8.5},
-    {'EU': 42.5, 'US': 9},
-    {'EU': 43, 'US': 9.5},
-    {'EU': 44, 'US': 10},
-    {'EU': 44.5, 'US': 10.5},
-    {'EU': 45, 'US': 11},
-    {'EU': 45.5, 'US': 11.5},
-    {'EU': 46, 'US': 12},
-    {'EU': 47, 'US': 12.5},
-    {'EU': 47.5, 'US': 13},
-    {'EU': 48, 'US': 13.5},
-    {'EU': 48.5, 'US': 14},
-    {'EU': 49.5, 'US': 15},
-    {'EU': 50.5, 'US': 16},
-    {'EU': 51.5, 'US': 17},
-    {'EU': 52.5, 'US': 18}
+NikeChart = [
+    {'EU': '35.5', 'USM': '3.5', 'USW': '5'},
+    {'EU': '36', 'USM': '4', 'USW': '5.5'},
+    {'EU': '36.5', 'USM': '4.5', 'USW': '6'},
+    {'EU': '37.5', 'USM': '5', 'USW': '6.5'},
+    {'EU': '38', 'USM': '5.5', 'USW': '7'},
+    {'EU': '38.5', 'USM': '6', 'USW': '7.5'},
+    {'EU': '39', 'USM': '6.5', 'USW': '8'},
+    {'EU': '40', 'USM': '7', 'USW': '8.5'},
+    {'EU': '40.5', 'USM': '7.5', 'USW': '9'},
+    {'EU': '41', 'USM': '8', 'USW': '9.5'},
+    {'EU': '42', 'USM': '8.5', 'USW': '10'},
+    {'EU': '42.5', 'USM': '9', 'USW': '10.5'},
+    {'EU': '43', 'USM': '9.5', 'USW': '11'},
+    {'EU': '44', 'USM': '10', 'USW': '11.5'},
+    {'EU': '44.5', 'USM': '10.5', 'USW': '12'},
+    {'EU': '45', 'USM': '11', 'USW': '12.5'},
+    {'EU': '45.5', 'USM': '11.5', 'USW': '13'},
+    {'EU': '46', 'USM': '12', 'USW': '13.5'},
+    {'EU': '47', 'USM': '12.5', 'USW': '14'},
+    {'EU': '47.5', 'USM': '13', 'USW': '14.5'},
+    {'EU': '48', 'USM': '13.5', 'USW': '15'},
+    {'EU': '48.5', 'USM': '14', 'USW': '15.5'},
+    {'EU': '48.5', 'USM': '14.5', 'USW': '16'},
+    {'EU': '49.5', 'USM': '15', 'USW': '16.5'},
+    {'EU': '48.5', 'USM': '15.5', 'USW': '17'},
+    {'EU': '50.5', 'USM': '16', 'USW': '17.5'},
+    {'EU': '51', 'USM': '16.5', 'USW': '18'},
+    {'EU': '51.5', 'USM': '17', 'USW': '18.5'},
+    {'EU': '52', 'USM': '17.5', 'USW': '19'},
+    {'EU': '52.5', 'USM': '18', 'USW': '19.5'},
+    {'EU': '53', 'USM': '18.5', 'USW': '20'},
+    {'EU': '53.5', 'USM': '19', 'USW': '20.5'},
+    {'EU': '54', 'USM': '19.5', 'USW': '21'},
+    {'EU': '54.5', 'USM': '20', 'USW': '21.5'},
+    {'EU': '55', 'USM': '20.5', 'USW': '22'},
+    {'EU': '55.5', 'USM': '21', 'USW': '22.5'},
+    {'EU': '56', 'USM': '21.5', 'USW': '23'},
+    {'EU': '56.5', 'USM': '22', 'USW': '23.5'}
 ]
 
-def MenChartUEtoUS(size):
-    for elem in Menchart:
-        if elem['EU'] == size:
-            return elem['US']
-    return -1
+AdidasChart = [
+    {'EU': '36', 'USM': '4', 'USW': '5'},
+    {'EU': '36 2/3', 'USM': '4.5', 'USW': '5.5'},
+    {'EU': '37 1/3', 'USM': '5', 'USW': '6'},
+    {'EU': '38', 'USM': '5.5', 'USW': '6.5'},
+    {'EU': '38 2/3', 'USM': '6', 'USW': '7'},
+    {'EU': '39 1/3', 'USM': '6.5', 'USW': '7.5'},
+    {'EU': '40', 'USM': '7', 'USW': '8'},
+    {'EU': '40 2/3', 'USM': '7.5', 'USW': '8.5'},
+    {'EU': '41 1/3', 'USM': '8', 'USW': '9'},
+    {'EU': '42', 'USM': '8.5', 'USW': '9.5'},
+    {'EU': '42 2/3', 'USM': '9', 'USW': '10'},
+    {'EU': '43 1/3', 'USM': '9.5', 'USW': '10.5'},
+    {'EU': '44', 'USM': '10', 'USW': '11'},
+    {'EU': '44 2/3', 'USM': '10.5', 'USW': '11.5'},
+    {'EU': '45 1/3', 'USM': '11', 'USW': '12'},
+    {'EU': '46', 'USM': '11.5', 'USW': '12.5'},
+    {'EU': '46 2/3', 'USM': '12', 'USW': '13'},
+    {'EU': '47 1/3', 'USM': '12.5', 'USW': '13.5'},
+    {'EU': '48', 'USM': '13', 'USW': '14'},
+    {'EU': '48 2/3', 'USM': '13.5', 'USW': '14.5'},
+    {'EU': '49 1/3', 'USM': '14', 'USW': '15'},
+    {'EU': '50', 'USM': '14.5', 'USW': '15.5'},
+    {'EU': '50 2/3', 'USM': '15', 'USW': '16'},
+    {'EU': '51 1/3', 'USM': '16', 'USW': '17'},
+    {'EU': '52 2/3', 'USM': '17', 'USW': '18'},
+    {'EU': '53 1/3', 'USM': '18', 'USW': '19'},
+    {'EU': '54 2/3', 'USM': '19', 'USW': '20'},
+    {'EU': '55 2/3', 'USM': '20', 'USW': '21'},
+]
 
-def MenChartUStoEU(size):
-    for elem in Menchart:
-        if elem['US'] == size:
+def MenChartUEtoUS(size, brand):
+    print(brand)
+    if brand == "adidas":
+        chart = AdidasChart
+    else:
+        chart = NikeChart
+    for elem in chart:
+        if elem['EU'] == size:
+            return elem['USM']
+    return "?"
+
+def WomenChartUEtoUS(size, brand):
+    print(brand)
+    if brand == "adidas":
+        chart = AdidasChart
+    else:
+        chart = NikeChart
+    for elem in chart:
+        if elem['EU'] == size:
+            return elem['USW']
+    return "?"
+
+def MenChartUStoEU(size, brand):
+    print(brand)
+    if brand == "adidas":
+        chart = AdidasChart
+    else:
+        chart = NikeChart
+    for elem in chart:
+        if elem['USM'] == size:
             return elem['EU']
-    return -1
+    return "?"
+
+def WomenChartUStoEU(size, brand):
+    print(brand)
+    if brand == "adidas":
+        chart = AdidasChart
+    else:
+        chart = NikeChart
+    for elem in chart:
+        if elem['USW'] == size:
+            return elem['EU']
+    return "?"
