@@ -61,14 +61,20 @@ def APIsearch(query, proxies):
         'x-requested-with': 'XMLHttpRequest'
     }
     url = f'https://stockx.com/api/browse?_search={query}'
-    html = requests.get(url=url, headers=headers, proxies=proxies[randint(0, len(proxies) - 1)])
+    if proxies is not None:
+        html = requests.get(url=url, headers=headers, proxies=proxies[randint(0, len(proxies) - 1)])
+    else:
+        html = requests.get(url=url, headers=headers)
     output = json.loads(html.text)
     if "captcha" in str(output):
         print("captcha !")
         return None
 
     url2 = f"https://stockx.com/api/products/{output['Products'][0]['urlKey']}?includes=market&currency=EUR&country=FR"
-    html2 = requests.get(url=url2, headers=headers, proxies=proxies[randint(0, len(proxies) - 1)])
+    if proxies is not None:
+        html2 = requests.get(url=url2, headers=headers, proxies=proxies[randint(0, len(proxies) - 1)])
+    else:
+        html2 = requests.get(url=url2, headers=headers)
     output2 = json.loads(html2.text)
     if "captcha" in str(output):
         print("captcha !")
