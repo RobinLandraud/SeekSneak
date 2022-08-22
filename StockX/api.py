@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import json
 from random import randint
+from Sizing.SizeChart import MenChartUStoEU
 
 class APIProductSX:
     def __init__(self, item = None, sizes = None) -> None:
@@ -10,10 +11,13 @@ class APIProductSX:
         self.parseDataItem(item, sizes)
     def parseDataItem(self, item, sizes):
         self.styleID = item['styleId']
-        self.name = item['name']
+        self.name = item['title']
+        self.gender = item['gender']
         self.colorway = item['colorway']
         self.url = 'https://stockx.com/en-gb/' + item['urlKey']
         self.image = item['media']['smallImageUrl']
+        self.salesLast72Hours = item['market']['salesLast72Hours']
+        self.year = item['year']
         self.sizes = sizes
     def printInfos(self):
         print(f"StyleID: {self.styleID}\n\
@@ -32,6 +36,7 @@ class Size:
         self.parseDataItem(item)
     def parseDataItem(self, item):
         self.size = item['shoeSize']
+        self.size = f"{MenChartUStoEU(float(item['shoeSize']))} EU / {item['shoeSize']} US"
         self.lastSale = item['market']['lastSale']
         self.lowestAsk = item['market']['lowestAsk']
         self.volatility = item['market']['volatility']
@@ -44,7 +49,7 @@ class Size:
         Highest Bid: {self.highestBid}\
         ")
 
-def APIsearch(query, proxies):
+def APIsearchSX(query, proxies):
     headers = {
         'accept': 'application/json',
         'accept-encoding': 'utf-8',
@@ -83,8 +88,9 @@ def APIsearch(query, proxies):
     sizes = output2['Product']['children']
     sizeList = []
     for size in sizes:
-        new_size = Size(sizes[size])
-        sizeList.append(new_size)
+        if str(sizes[size]['shoeSize']).find("2E") == -1 and str(sizes[size]['shoeSize']).find("3E") == -1:
+            new_size = Size(sizes[size])
+            sizeList.append(new_size)
 
     result = APIProductSX(output['Products'][0], sizeList)
     print("request done")

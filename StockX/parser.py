@@ -3,7 +3,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.keys import Keys
 import time
 from bs4 import BeautifulSoup
-from .api import APIsearch, APIProductSX
+from .api import APIsearchSX, APIProductSX
 from datetime import date
 
 from scrapingant_client import ScrapingAntClient

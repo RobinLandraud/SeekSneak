@@ -4,17 +4,17 @@ from .models import Note
 from . import db, proxies
 import json
 from .webforms import SearchForm
-from StockX.api import APIProductSX, APIsearch
+
+from StockX.api import APIProductSX, APIsearchSX
 from StockX.parser import parser_most_popular
-from Restocks.api import APIsearchSKU
+
+from Restocks.api import APIProductR, APIsearchR
 
 views = Blueprint('views', __name__)
 
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    #shoes = parser_most_popular(2, proxies)
-    #APIsearchSKU("DD1391-100", proxies)
     if request.method == 'POST':
         note = request.form.get('note')
 
@@ -46,11 +46,15 @@ def search():
     result = None
     if form.validate_on_submit():
         query = form.searched.data
-        result = APIsearch(query, proxies)
-        if (result is None):
-            print("error")
-            return render_template("search.html", searched=result, user=current_user, query=query, captcha=True)
-        result.printInfos()
+        resultSX = APIsearchSX(query, proxies)
+        if (resultSX is None):
+            print("error StockX")
+            return render_template("search.html", searchedSX=resultSX, searchedR=resultR, user=current_user, query=query, captcha=True)
+        resultR = APIsearchR(resultSX.styleID, proxies)
+        if resultR is None:
+            print("error Restocks")
+            return render_template("search.html", searchedSX=resultSX, searchedR=resultR, user=current_user, query=query, captcha=True)
+        resultR.printInfos()
         print("API done")
-        return render_template("search.html", searched=result, user=current_user, query=query, captcha=False)
+        return render_template("search.html", searchedSX=resultSX, searchedR=resultR, user=current_user, query=query, captcha=False)
     return redirect(url_for('views.home'))

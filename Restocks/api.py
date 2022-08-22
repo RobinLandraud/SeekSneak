@@ -2,6 +2,42 @@ from bs4 import BeautifulSoup
 import requests
 import json
 from random import randint
+from .parser import parseRProductPageSizes
+
+class APIProductR:
+    def __init__(self, item = None, sizes = None) -> None:
+        if item is None or sizes is None:
+            return
+        self.parseDataItem(item, sizes)
+    def parseDataItem(self, item, sizes):
+        self.name = item['name']
+        self.styleID = item['styleId']
+        self.url = item['url']
+        self.image = item['image']
+        self.sizes = sizes
+    def printInfos(self):
+        print(f"StyleID: {self.styleID}\n\
+        Name: {self.name}\n\
+        Image: {self.image}\n\
+        URL: {self.url}\
+        ")
+        for size in self.sizes:
+            size.printInfos()
+
+class Size:
+    def __init__(self, item = None) -> None:
+        if item is None:
+            return
+        self.parseDataItem(item)
+    def parseDataItem(self, item):
+        self.size = item['shoeSize']
+        self.stock = item['stock']
+        self.price = item['price']
+    def printInfos(self):
+        print(f"Size: {self.size}\n\
+        Stock: {self.stock}\n\
+        Price: {self.price}\
+        ")
 
 def APIsearchSKU(sku, proxies):
     url = f'https://restocks.net/fr/shop/search?q={sku}&page=1&filters[0][range][price][gte]=1'
@@ -29,3 +65,29 @@ def APIsearchSKU(sku, proxies):
         print("captcha !")
         return None
     return output['data'][0]
+
+def getInfosfromSKU(sku, proxies):
+    data = APIsearchSKU(sku, proxies)
+    if data is None:
+        return None
+    url = str(data['slug']).replace('\\', '')
+    image = str(data['image']).replace('\\', '')
+    infos = {
+        "name": str(data['name']),
+        "url": url,
+        "image": image,
+        "styleId": data['sku']
+    }
+    return infos
+
+def APIsearchR(sku, proxies):
+    sizes = []
+    infos = getInfosfromSKU(sku, proxies)
+    if infos is None:
+        return None
+    dictSizes = parseRProductPageSizes(infos['url'], proxies)
+    if dictSizes is None:
+        return None
+    for dictSize in dictSizes:
+        sizes.append(Size(dictSize))
+    return APIProductR(infos, sizes)
