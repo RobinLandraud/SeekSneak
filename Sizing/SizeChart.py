@@ -1,4 +1,6 @@
 NikeChart = [
+    {'EU': '34.5', 'USM': '2.5', 'USW': '4'},
+    {'EU': '35', 'USM': '3', 'USW': '4.5'},
     {'EU': '35.5', 'USM': '3.5', 'USW': '5'},
     {'EU': '36', 'USM': '4', 'USW': '5.5'},
     {'EU': '36.5', 'USM': '4.5', 'USW': '6'},
@@ -70,11 +72,48 @@ AdidasChart = [
     {'EU': '55 2/3', 'USM': '20', 'USW': '21'},
 ]
 
+NewBalanceChart = [
+    {'EU': '34', 'USM': '?', 'USW': '4'},
+    {'EU': '34.5', 'USM': '?', 'USW': '4.5'},
+    {'EU': '35', 'USM': '?', 'USW': '5'},
+    {'EU': '36', 'USM': '4', 'USW': '5.5'},
+    {'EU': '37', 'USM': '4.5', 'USW': '6'},
+    {'EU': '37.5', 'USM': '5', 'USW': '6.5'},
+    {'EU': '38', 'USM': '5.5', 'USW': '7'},
+    {'EU': '38.5', 'USM': '6', 'USW': '7.5'},
+    {'EU': '39.5', 'USM': '6.5', 'USW': '8'},
+    {'EU': '40', 'USM': '7', 'USW': '8.5'},
+    {'EU': '40.5', 'USM': '7.5', 'USW': '9'},
+    {'EU': '41.5', 'USM': '8', 'USW': '9.5'},
+    {'EU': '42', 'USM': '8.5', 'USW': '10'},
+    {'EU': '42.5', 'USM': '9', 'USW': '10.5'},
+    {'EU': '43', 'USM': '9.5', 'USW': '11'},
+    {'EU': '44', 'USM': '10', 'USW': '11.5'},
+    {'EU': '44.5', 'USM': '10.5', 'USW': '12'},
+    {'EU': '45', 'USM': '11', 'USW': '12.5'},
+    {'EU': '45.5', 'USM': '11.5', 'USW': '13'},
+    {'EU': '46.5', 'USM': '12', 'USW': '13.5'},
+    {'EU': '47', 'USM': '12.5', 'USW': '14'},
+    {'EU': '47.5', 'USM': '13', 'USW': '15'},
+    {'EU': '49', 'USM': '14', 'USW': '?'},
+    {'EU': '50', 'USM': '15', 'USW': '?'},
+    {'EU': '51', 'USM': '16', 'USW': '?'},
+    {'EU': '52', 'USM': '17', 'USW': '?'},
+    {'EU': '53', 'USM': '18', 'USW': '?'},
+    {'EU': '54', 'USM': '19', 'USW': '?'},
+    {'EU': '55', 'USM': '20', 'USW': '?'}
+]
+
+BrandList = {
+    'adidas': AdidasChart,
+    'Nike': NikeChart,
+    'New Balance': NewBalanceChart
+}
+
 def MenChartUEtoUS(size, brand):
     print(brand)
-    if brand == "adidas":
-        chart = AdidasChart
-    else:
+    chart = BrandList.get(brand)
+    if chart is None:
         chart = NikeChart
     for elem in chart:
         if elem['EU'] == size:
@@ -83,9 +122,8 @@ def MenChartUEtoUS(size, brand):
 
 def WomenChartUEtoUS(size, brand):
     print(brand)
-    if brand == "adidas":
-        chart = AdidasChart
-    else:
+    chart = BrandList.get(brand)
+    if chart is None:
         chart = NikeChart
     for elem in chart:
         if elem['EU'] == size:
@@ -94,9 +132,8 @@ def WomenChartUEtoUS(size, brand):
 
 def MenChartUStoEU(size, brand):
     print(brand)
-    if brand == "adidas":
-        chart = AdidasChart
-    else:
+    chart = BrandList.get(brand)
+    if chart is None:
         chart = NikeChart
     for elem in chart:
         if elem['USM'] == size:
@@ -105,9 +142,8 @@ def MenChartUStoEU(size, brand):
 
 def WomenChartUStoEU(size, brand):
     print(brand)
-    if brand == "adidas":
-        chart = AdidasChart
-    else:
+    chart = BrandList.get(brand)
+    if chart is None:
         chart = NikeChart
     for elem in chart:
         if elem['USW'] == size:

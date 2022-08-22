@@ -32,16 +32,21 @@ def parseRProductPageSizes(url, gender, brand, proxies):
             res = str(price.find("span"))[15:-7]
         else:
             res = "?"
+        stock = str(block.find("span", class_="float-right delivery__text"))[42:-70]
+        if stock.replace(" ", "") == "":
+            stock = "4+"
+        else:
+            stock = stock[10:-9]
         if gender == "men":
             sizes.append({
                 'shoeSize': f"{size} EU / {MenChartUEtoUS(size, brand)} US",
                 'price': res,
-                'stock': "1+"
+                'stock': stock
             })
         else:
             sizes.append({
                 'shoeSize': f"{size} EU / {WomenChartUEtoUS(size, brand)} US",
                 'price': res,
-                'stock': "1+"
+                'stock': stock
             })
     return sizes
