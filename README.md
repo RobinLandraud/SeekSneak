@@ -19,7 +19,7 @@ Available soon:
 - Python 3.8.10
 - pip 22.0.3
 
-Libraries:
+Python Libraries:
 - werkzeug
 - flask
 - flask_login
