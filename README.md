@@ -1,4 +1,4 @@
-#SeekSneak
+# SeekSneak
 
 ![Python Lover](https://forthebadge.com/images/badges/made-with-python.svg) ![Built with Love](https://forthebadge.com/images/badges/built-with-love.svg) ![Work on my Machine](https://forthebadge.com/images/badges/works-on-my-machine.svg)
 
