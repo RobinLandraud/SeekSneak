@@ -8,16 +8,25 @@ SeekSneak is a bot to find the best prices to buy and resell sneakers. It compar
 
 Our algorithm scrapes the sites for you and uses their APIs.
 
-## APIs Available:
-- stockX
-- restocks
+## Features
 
-### Available soon:
-- Goat
+### Already severals APIs Available:
+- **StockX**
+- **Restocks**
 
-## Prerequisite:
-- Python 3.8.10
-- pip 22.0.3
+### APIs coming soon:
+- **Goat**
+
+Many websites and data will be added to our bot to improve its research and give you the most relevant results possible.
+
+## User Guide
+
+### Prerequisite:
+
+Here is the list of languages, package manager and libraries useful for deploying the bot :
+
+- **Python 3.8.10**
+- **pip 22.0.3**
 
 ### Python Libraries:
 - werkzeug
@@ -55,6 +64,22 @@ Our algorithm scrapes the sites for you and uses their APIs.
 - json
    ```bash
    $ pip install json
+   ```
+
+## Deploying
+
+1. After installing all dependencies, please clone the repository:
+   ```bash
+   $ git clone git@github.com:RobinLandraud/Sneaker.git
+   ```
+
+2. To launch the bot on your browser, launch the main.py file at the root of the file:
+   ```bash
+   $ ./main.py
+   ```
+   OR
+   ```bash
+   $ python main.py
    ```
 
 ![Work on my Machine](https://forthebadge.com/images/badges/works-on-my-machine.svg)
