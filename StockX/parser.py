@@ -1,6 +1,3 @@
-from selenium import webdriver
-from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.common.keys import Keys
 import time
 from bs4 import BeautifulSoup
 from .api import APIsearchSX, APIProductSX
@@ -36,22 +33,6 @@ def APIscrapPage(page, key):
     return (result.content)
 
 def parser_most_popular_page(index):
-
-    """
-    print("page open")
-    result = []
-    driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
-    driver.get(f"https://stockx.com/fr-fr/sneakers/most-popular?page={index}")
-    content = driver.page_source.encode('utf-8').strip()
-    soup = BeautifulSoup(content, "lxml")
-    driver.close()
-    elements = soup.find_all("p", class_="chakra-text css-3lpefb")
-    print(len(elements))
-    for elem in elements:
-        result.append(str(elem)[34:-4])
-    return result
-    """
-
     result = []
     page = f"https://stockx.com/fr-fr/sneakers/most-popular?page={index}"
 
