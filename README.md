@@ -82,4 +82,9 @@ Here is the list of languages, package manager and libraries useful for deployin
    $ python main.py
    ```
 
+3. After testing all the proxies, your command prompt should show you the url on which you can use the bot with a web GUI. Here is an example:
+   ```bash
+   $ Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+   ```
+
 ![Work on my Machine](https://forthebadge.com/images/badges/works-on-my-machine.svg)
