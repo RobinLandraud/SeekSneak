@@ -8,9 +8,28 @@ SeekSneak is a bot to find the best prices to buy and resell sneakers. It compar
 
 Our algorithm scrapes the sites for you and uses their APIs.
 
-Here is the list of websites used by the bot:
+## Here is the list of APIs used by the bot:
+- stockX
+- restocks
 
-- https://stockx.com/
-- https://restocks.net/
+Available soon:
+- Goat
+
+## Prerequisite:
+- Python 3.8.10
+- pip 22.0.3
+
+Libraries:
+- werkzeug
+- flask
+- flask_login
+- flask_wtf
+- flask_ckeditor
+- sqlalchemy
+- beautifulsoup4
+- requests
+- json
+
+
 
 ![Work on my Machine](https://forthebadge.com/images/badges/works-on-my-machine.svg)
