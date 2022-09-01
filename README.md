@@ -66,7 +66,7 @@ Here is the list of languages, package manager and libraries useful for deployin
    $ pip install json
    ```
 
-## Deploying
+### Deploying
 
 1. After installing all dependencies, please clone the repository:
    ```bash
@@ -86,5 +86,9 @@ Here is the list of languages, package manager and libraries useful for deployin
    ```bash
    $ Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
    ```
+
+## Contributing
+
+SeekSneak welcomes any contributions from anyone! Please make SeekSneak a better tool for every reseller!
 
 ![Work on my Machine](https://forthebadge.com/images/badges/works-on-my-machine.svg)
