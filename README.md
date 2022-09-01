@@ -21,6 +21,9 @@ Available soon:
 
 Python Libraries:
 - werkzeug
+   ```bash
+   $ pip install Werkzeug
+   ```
 - flask
 - flask_login
 - flask_wtf
