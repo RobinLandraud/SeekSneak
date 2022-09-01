@@ -25,14 +25,36 @@ Python Libraries:
    $ pip install Werkzeug
    ```
 - flask
+   ```bash
+   $ pip install Flask
+   ```
 - flask_login
+   ```bash
+   $ pip install Flask-Login
+   ```
 - flask_wtf
+   ```bash
+   $ pip install Flask-WTF
+   ```
 - flask_ckeditor
+   ```bash
+   $ pip install Flask-CKEditor
+   ```
 - sqlalchemy
+   ```bash
+   $ pip install SQLAlchemy
+   ```
 - beautifulsoup4
+   ```bash
+   $ pip install beautifulsoup4
+   ```
 - requests
+   ```bash
+   $ pip install requests
+   ```
 - json
-
-
+   ```bash
+   $ pip install json
+   ```
 
 ![Work on my Machine](https://forthebadge.com/images/badges/works-on-my-machine.svg)
