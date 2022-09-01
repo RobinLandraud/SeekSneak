@@ -2,7 +2,7 @@
 
 ![Python Lover](https://forthebadge.com/images/badges/made-with-python.svg) ![Built with Love](https://forthebadge.com/images/badges/built-with-love.svg)
 
-SeekSneak is a bot allowing you to find the best prices to buy and resell sneakers. It compares inventory and other information on many sites to give you the best choices for making money buying reselling. All you have to do is type the desired pair into our search tool.
+SeekSneak is a bot to find the best prices to buy and resell sneakers. It compares inventory and other information across many sites to give you the best choices for making money buying and selling. Simply type the desired pair into our search tool.
 
 ![Sneakers](https://media.giphy.com/media/5WlXGaNnB0N6o/giphy.gif)
 
