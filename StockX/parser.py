@@ -1,7 +1,5 @@
-import time
 from bs4 import BeautifulSoup
 from .api import APIsearchSX, APIProductSX
-from datetime import date
 
 from scrapingant_client import ScrapingAntClient
 
