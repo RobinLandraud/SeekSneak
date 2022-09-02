@@ -73,7 +73,7 @@ Here is the list of languages, package manager and libraries useful for deployin
    $ git clone git@github.com:RobinLandraud/Sneaker.git
    ```
 
-2. To launch the bot on your browser, launch the main.py file at the root of the file:
+2. To launch the bot on your browser, launch the main.py file at the root of the repository:
    ```bash
    $ ./main.py
    ```
@@ -85,6 +85,16 @@ Here is the list of languages, package manager and libraries useful for deployin
 3. After testing all the proxies, your command prompt should show you the url on which you can use the bot with a web GUI. Here is an example:
    ```bash
    $ Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+   ```
+
+## Proxies
+
+Our bot uses a list of proxies in order to avoid captcha and to be as fast and secure as possible. You can change or modify this list from the proxies.txt file available at the root of the project. 
+
+To add a proxy, please give the information in order separated by a colon: IP, PORT and TYPE.
+Here is an example:
+   ```bash
+   $ 166.111.185.77:7078:HTTP
    ```
 
 ## Contributing
