@@ -70,8 +70,13 @@ def GOATgetSizesAPI(productID, brand, proxies):
     output = json.loads(html.text)
     for size in output:
         if size['shoeCondition'] != "used":
+            sizeValue = str(size['sizeOption']['value'])
+            if brand == "men":
+                sizeValue = f"{MenChartUStoEU(sizeValue, brand)} EU / {sizeValue} US"
+            else:
+                sizeValue = f"{WomenChartUStoEU(sizeValue, brand)} EU / {sizeValue} US"
             item = {
-                "shoeSize": str(size['sizeOption']['value']),
+                "shoeSize": sizeValue,
                 "stockStatus": size['stockStatus'],
                 "lowestPrice": GOATcheckAmount(size['lowestPriceCents']),
                 "instantShipLowestPrice": GOATcheckAmount(size['instantShipLowestPriceCents']),
@@ -114,7 +119,7 @@ def APIsearchSKU(sku, proxies):
         "templateID": str(productID),
         "url": str(productURL),
         "styleId": str(productSKU),
-        "brand": str(productBrand),
+        "brand": str(productBrand)[2:-2],
         "gender": str(productGender),
         "name": str(productName)
     }
