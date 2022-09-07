@@ -32,6 +32,7 @@ Our algorithm scrapes the sites for you and uses their APIs.
 
 ### APIs coming soon:
 - **Flight Club**
+- **Wethenew**
 
 Many websites and data will be added to our bot to improve its research and give you the most relevant results possible.
 
