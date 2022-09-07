@@ -28,9 +28,10 @@ Our algorithm scrapes the sites for you and uses their APIs.
 ### Already severals APIs Available:
 - **StockX**
 - **Restocks**
+- **Goat**
 
 ### APIs coming soon:
-- **Goat**
+- **Flight Club**
 
 Many websites and data will be added to our bot to improve its research and give you the most relevant results possible.
 
