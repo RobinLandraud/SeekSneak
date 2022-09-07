@@ -57,7 +57,7 @@ def GOATcheckAmount(item):
 
 def GOATgetSizesAPI(productID, brand, proxies):
     sizes = []
-    url = f'http://www.goat.com/web-api/v1/product_variants/buy_bar_data?productTemplateId={productID}'
+    url = f'http://www.goat.com/web-api/v1/product_variants/buy_bar_data?productTemplateId={productID}&countryCode=FR'
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.2; rv:20.0) Gecko/20121202 Firefox/20.0',
         'Content-Type': 'application/json'
