@@ -13,10 +13,10 @@ def main():
     #most_popular(2)
     #parser_most_popular(1, proxies)
     proxies = getListProxies()
-    APIsearchG("DH4692-001", proxies)
+    APIsearchG("DD1391-100", proxies)
     #most_popular(2, proxies)
 
 
 if __name__ == "__main__":
-    #app.run(debug=False)
-    main()
+    app.run(debug=False)
+    #main()

@@ -7,6 +7,7 @@ from .webforms import SearchForm
 
 from StockX.api import APIProductSX, APIsearchSX
 from StockX.parser import parser_most_popular
+from Goat.api import APIsearchG
 
 from Restocks.api import APIProductR, APIsearchR
 
@@ -54,6 +55,10 @@ def search():
         if resultR is None:
             print("error Restocks")
             return render_template("search.html", searchedSX=resultSX, searchedR=resultR, user=current_user, query=query, captcha=True)
+        resultG = APIsearchG(resultSX.styleID, proxies)
+        if resultG is None:
+            print('error Goat')
+            return render_template("search.html", searchedSX=resultSX, searchedR=resultR, user=current_user, query=query, captcha=True)
         print("API done")
-        return render_template("search.html", searchedSX=resultSX, searchedR=resultR, user=current_user, query=query, captcha=False)
+        return render_template("search.html", searchedSX=resultSX, searchedR=resultR, searchedG=resultG, user=current_user, query=query, captcha=False)
     return redirect(url_for('views.home'))

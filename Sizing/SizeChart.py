@@ -111,7 +111,6 @@ BrandList = {
 }
 
 def MenChartUEtoUS(size, brand):
-    print(brand)
     chart = BrandList.get(brand)
     if chart is None:
         chart = NikeChart
@@ -121,7 +120,6 @@ def MenChartUEtoUS(size, brand):
     return "?"
 
 def WomenChartUEtoUS(size, brand):
-    print(brand)
     chart = BrandList.get(brand)
     if chart is None:
         chart = NikeChart
@@ -131,7 +129,6 @@ def WomenChartUEtoUS(size, brand):
     return "?"
 
 def MenChartUStoEU(size, brand):
-    print(brand)
     chart = BrandList.get(brand)
     if chart is None:
         chart = NikeChart
@@ -141,7 +138,6 @@ def MenChartUStoEU(size, brand):
     return "?"
 
 def WomenChartUStoEU(size, brand):
-    print(brand)
     chart = BrandList.get(brand)
     if chart is None:
         chart = NikeChart

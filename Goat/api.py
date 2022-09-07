@@ -40,12 +40,14 @@ class Size:
         self.lowestPrice = item['lowestPrice']
         self.instantShipLowestPrice = item['instantShipLowestPrice']
         self.lastSoldPrice = item['lastSoldPrice']
+        self.shoeCondition = item['shoeCondition']
     def printInfos(self):
         print(f"Size: {self.size}\n\
         Stock: {self.stockStatus}\n\
-        Stock: {self.lowestPrice}\n\
-        Stock: {self.instantShipLowestPrice}\n\
-        Price: {self.lastSoldPrice}\
+        Lowest Price: {self.lowestPrice}\n\
+        Instant Ship: {self.instantShipLowestPrice}\n\
+        Last Sold: {self.lastSoldPrice}\n\
+        Shoe Condition: {self.shoeCondition}\
         ")
 
 def GOATcheckAmount(item):
@@ -58,31 +60,35 @@ def GOATgetSizesAPI(productID, brand, proxies):
     url = f'http://www.goat.com/web-api/v1/product_variants/buy_bar_data?productTemplateId={productID}'
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.2; rv:20.0) Gecko/20121202 Firefox/20.0',
-        'Content-Type': 'application/json',
-        'accept-language': 'fr-FR'
+        'Content-Type': 'application/json'
     }
     proxy = proxies[randint(0, len(proxies) - 1)]
     with requests.Session() as s:
         s.get(url=url, headers=headers, proxies=proxy)
         s.cookies.set('currency', 'EUR')
         s.cookies.set('country', 'FR')
+        s.cookies.set('ConstructorioID_client_id', '2e05776c-c551-46cc-abc9-80589db71228')
+        s.cookies.set('ConstructorioID_session_id', '7')
+        s.cookies.set('global_pricing_regions', '{"AT":"2","BE":"2","BG":"2","CY":"2","CZ":"2","DE":"2","DK":"2","EE":"2","ES":"2","FI":"2","FR":"2","GR":"2","HK":"223","HR":"2","HU":"2","IE":"2","IT":"2","JP":"57","LT":"2","LU":"2","LV":"2","MT":"2","NL":"2","PL":"2","PT":"2","RO":"2","SE":"2","SG":"106","SI":"2","SK":"2","UK":"4","US":"3"}')
+        s.cookies.set('global_pricing_id', '2')
+        print(s.cookies)
         html = s.get(url=url, headers=headers, proxies=proxy)
     output = json.loads(html.text)
     for size in output:
-        if size['shoeCondition'] != "used":
-            sizeValue = str(size['sizeOption']['value'])
-            if brand == "men":
-                sizeValue = f"{MenChartUStoEU(sizeValue, brand)} EU / {sizeValue} US"
-            else:
-                sizeValue = f"{WomenChartUStoEU(sizeValue, brand)} EU / {sizeValue} US"
-            item = {
-                "shoeSize": sizeValue,
-                "stockStatus": size['stockStatus'],
-                "lowestPrice": GOATcheckAmount(size['lowestPriceCents']),
-                "instantShipLowestPrice": GOATcheckAmount(size['instantShipLowestPriceCents']),
-                "lastSoldPrice": GOATcheckAmount(size['lastSoldPriceCents'])
-            }
-            sizes.append(Size(item))
+        sizeValue = str(size['sizeOption']['value'])
+        if brand == "men":
+            sizeValue = f"{MenChartUStoEU(sizeValue, brand)} EU / {sizeValue} US"
+        else:
+            sizeValue = f"{WomenChartUStoEU(sizeValue, brand)} EU / {sizeValue} US"
+        item = {
+            "shoeSize": sizeValue,
+            "stockStatus": size['stockStatus'],
+            "lowestPrice": GOATcheckAmount(size['lowestPriceCents']),
+            "instantShipLowestPrice": GOATcheckAmount(size['instantShipLowestPriceCents']),
+            "lastSoldPrice": GOATcheckAmount(size['lastSoldPriceCents']),
+            "shoeCondition": size['shoeCondition']
+        }
+        sizes.append(Size(item))
     return sizes
 
 def APIsearchSKU(sku, proxies):
@@ -119,8 +125,8 @@ def APIsearchSKU(sku, proxies):
         "templateID": str(productID),
         "url": str(productURL),
         "styleId": str(productSKU),
-        "brand": str(productBrand)[2:-2],
-        "gender": str(productGender),
+        "brand": str(productBrand),
+        "gender": str(productGender)[2:-2],
         "name": str(productName)
     }
     return item
