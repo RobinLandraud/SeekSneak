@@ -28,84 +28,125 @@
                 </div>
             </div>
         </div>
-        <h2>StockX Informations:</h2>
-        <table class="table table-striped table-sm">
-            <thead>
-              <tr>
-                <th>Size</th>
-                <th>Last Sale</th>
-                <th>Lowest Ask</th>
-                <th>Highest Bid</th>
-                <th>Volatility</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for size in searchedSX.sizes %}
-                <tr>
-                    <td>{{ size.size }}</td>
-                    <td>{{ size.lastSale }}</td>
-                    <td>{{ size.lowestAsk }}</td>
-                    <td>{{ size.highestBid }}</td>
-                    <td>{{ size.volatility }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <br>
-        <a class="btn btn-primary" style="margin-bottom: 50px;" href={{ searchedSX.url }} role="button">Go on StockX!</a>
-        <br>
-        <h2>Restocks Informations:</h2>
-        <table class="table table-striped table-sm">
-            <thead>
-              <tr>
-                <th>Size</th>
-                <th>Price</th>
-                <th>Stock</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for size in searchedR.sizes %}
-                {% if size.price != "?" %}
-                <tr>
-                    <td>{{ size.size }}</td>
-                    <td>{{ size.price }}</td>
-                    <td>{{ size.stock }}</td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
-        <br>
-        <h2>Goat Informations:</h2>
-        <table class="table table-striped table-sm">
-            <thead>
-              <tr>
-                <th>Size</th>
-                <th>Stock Status</th>
-                <th>Lowest Price</th>
-                <th>Instant Ship Lowest Price</th>
-                <th>Last Sale</th>
-                <th>Shoe Condition</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for size in searchedG.sizes %}
-                {% if size.stockStatus != "not_in_stock" %}
-                <tr>
-                    <td>{{ size.size }}</td>
-                    <td>{{ size.stockStatus }}</td>
-                    <td>{{ size.lowestPrice }}</td>
-                    <td>{{ size.instantShipLowestPrice }}</td>
-                    <td>{{ size.lastSoldPrice }}</td>
-                    <td>{{ size.shoeCondition }}</td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
-        <br>
-        <a class="btn btn-primary" style="margin-bottom: 50px;" href={{ searchedG.url }} role="button">Go on Goat!</a>
-        <br>
+        <div id="accordion">
+            <div class="card">
+              <div class="card-header" id="headingOne" style="background-color: black;">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h4 style="color: white;">
+                        <svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-ruled-fill" viewBox="0 0 16 16">
+                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM3 9h10v1H6v2h7v1H6v2H5v-2H3v-1h2v-2H3V9z"/>
+                        </svg>
+                        &nbsp&nbspStockX Informations
+                    </h4>
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <table class="table table-striped table-dark" style="margin-bottom:0px">
+                    <thead>
+                    <tr>
+                        <th scope="col">Size</th>
+                        <th scope="col">Last Sale</th>
+                        <th scope="col">Lowest Ask</th>
+                        <th scope="col">Highest Bid</th>
+                        <th scope="col">Volatility</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for size in searchedSX.sizes %}
+                        <tr>
+                            <th scope="row">{{ size.size }}</th>
+                            <td>{{ size.lastSale }}€</td>
+                            <td>{{ size.lowestAsk }}€</td>
+                            <td>{{ size.highestBid }}€</td>
+                            <td>{{ size.volatility }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a class="btn btn-secondary btn-lg btn-block" href={{ searchedSX.url }} role="button" style="border-radius: 0rem">Go on StockX!</a>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo" style="background-color: black;">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                      <h4 style="color: white;">
+                          <svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-ruled-fill" viewBox="0 0 16 16">
+                              <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM3 9h10v1H6v2h7v1H6v2H5v-2H3v-1h2v-2H3V9z"/>
+                          </svg>
+                          &nbsp&nbspRestocks Informations
+                      </h4>
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <table class="table table-striped table-dark" style="margin-bottom:0px">
+                        <thead>
+                            <tr>
+                                <th scope="col">Size</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for size in searchedR.sizes %}
+                            {% if size.price != "?" %}
+                            <tr>
+                                <th scope="row">{{ size.size }}</th>
+                                <td>{{ size.price }}</td>
+                                <td>{{ size.stock }}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <a class="btn btn-secondary btn-lg btn-block" href={{ searchedR.url }} role="button" style="border-radius: 0rem">Go on Restocks!</a>
+              </div>
+            <div class="card">
+                <div class="card-header" id="headingThree" style="background-color: black;">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    <h4 style="color: white;">
+                        <svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-ruled-fill" viewBox="0 0 16 16">
+                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM3 9h10v1H6v2h7v1H6v2H5v-2H3v-1h2v-2H3V9z"/>
+                        </svg>
+                        &nbsp&nbspGoat Informations
+                    </h4>
+                    </button>
+                </h5>
+                </div>
+                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
+                    <table class="table table-striped table-dark" style="margin-bottom:0px">
+                        <thead>
+                            <tr>
+                                <th scope="col">Size</th>
+                                <th scope="col">Stock Status</th>
+                                <th scope="col">Lowest Price</th>
+                                <th scope="col">Instant Ship Lowest Price</th>
+                                <th scope="col">Last Sale</th>
+                                <th scope="col">Shoe Condition</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for size in searchedG.sizes %}
+                            {% if size.price != "?" %}
+                            <tr>
+                                <th scope="row">{{ size.size }}</th>
+                                <td>{{ size.stockStatus }}</td>
+                                <td>{{ size.lowestPrice }}</td>
+                                <td>{{ size.instantShipLowestPrice }}</td>
+                                <td>{{ size.lastSoldPrice }}</td>
+                                <td>{{ size.shoeCondition }}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <a class="btn btn-secondary btn-lg btn-block" href={{ searchedG.url }} role="button" style="border-radius: 0rem">Go on Goat!</a>
+                </div>
+            </div>
+        </div>
     </div>
     {% else %}
     <h1 align="center">Captcha detected !</h1>
