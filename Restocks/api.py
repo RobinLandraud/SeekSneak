@@ -59,6 +59,8 @@ def APIsearchSKU(sku, proxies):
     }
     html = requests.get(url=url, headers=headers, proxies=proxies[randint(0, len(proxies) - 1)])
     output = json.loads(html.text)
+    if len(output['data']) <= 0:
+        return None
     print(output['data'][0]['slug'])
     print("request done")
     if "captcha" in str(output):
