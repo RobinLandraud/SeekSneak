@@ -21,10 +21,10 @@
 <!-- FAVORITES -->
 <div class="container">
   <h1 align="center">Favorites</h1>
-  <div class="card-deck">
+  <div class="card-columns">
     {% for favorite in user.favorites %}
-    <div class="card" style="width: auto; max-width: 400px;">
-      <img class="card-img-top" src="{{ favorite.photo }}" alt="Card image cap" style="width: auto; max-width: 400px;">
+    <div class="card" style="width: 350px; height: 400px;">
+      <img class="card-img-top" src="{{ favorite.photo }}" alt="Card image cap" style="width: auto; max-width: 340px;">
       <div class="card-body">
         <h5 class="card-title">{{ favorite.name }}</h5>
         <p class="card-text">SKU: {{ favorite.style_id }}</p>
