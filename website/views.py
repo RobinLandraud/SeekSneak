@@ -97,15 +97,10 @@ def search():
         resultSX = APIsearchSX(query, proxies)
         if (resultSX is None):
             print("error StockX")
-            return render_template("search.html", searchedSX=resultSX, searchedR=resultR, user=current_user, query=query, captcha=True)
+            return render_template("search.html", user=current_user, query=query, captcha=True)
         resultR = APIsearchR(resultSX.styleID, resultSX.gender, resultSX.brand, proxies)
-        if resultR is None:
-            print("error Restocks")
-            return render_template("search.html", searchedSX=resultSX, searchedR=resultR, user=current_user, query=query, captcha=True)
         resultG = APIsearchG(resultSX.styleID, proxies)
-        if resultG is None:
-            print('error Goat')
-            return render_template("search.html", searchedSX=resultSX, searchedR=resultR, user=current_user, query=query, captcha=True)
+        #return render_template("search.html", searchedSX=resultSX, searchedR=resultR, user=current_user, query=query, captcha=False)
         print("API done")
         return render_template("search.html", searchedSX=resultSX, searchedR=resultR, searchedG=resultG, user=current_user, query=query, captcha=False)
     return redirect(url_for('views.home'))

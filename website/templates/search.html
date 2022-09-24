@@ -66,7 +66,11 @@
                         {% endfor %}
                     </tbody>
                 </table>
-                <a class="btn btn-secondary btn-lg btn-block" href={{ searchedSX.url }} role="button" style="border-radius: 0rem">Go on StockX!</a>
+                {% if searchedG is not none %}
+                    <a class="btn btn-secondary btn-lg btn-block" href={{ searchedSX.url }} role="button" style="border-radius: 0rem">Go on StockX!</a>
+                {% else %}
+                    <a class="btn btn-secondary btn-lg btn-block" role="button" style="border-radius: 0rem">No data Found</a>
+                {% endif %}
             </div>
             <div class="card">
                 <div class="card-header" id="headingTwo" style="background-color: black;">
@@ -102,7 +106,11 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                    <a class="btn btn-secondary btn-lg btn-block" href={{ searchedR.url }} role="button" style="border-radius: 0rem">Go on Restocks!</a>
+                    {% if searchedG is not none %}
+                        <a class="btn btn-secondary btn-lg btn-block" href={{ searchedR.url }} role="button" style="border-radius: 0rem">Go on Restocks!</a>
+                    {% else %}
+                        <a class="btn btn-secondary btn-lg btn-block" role="button" style="border-radius: 0rem">No data Found</a>
+                    {% endif %}
                 </div>
             <div class="card">
                 <div class="card-header" id="headingThree" style="background-color: black;">
@@ -144,13 +152,17 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                    <a class="btn btn-secondary btn-lg btn-block" href={{ searchedG.url }} role="button" style="border-radius: 0rem">Go on Goat!</a>
+                    {% if searchedG is not none %}
+                        <a class="btn btn-secondary btn-lg btn-block" href={{ searchedG.url }} role="button" style="border-radius: 0rem">Go on Goat!</a>
+                    {% else %}
+                        <a class="btn btn-secondary btn-lg btn-block" role="button" style="border-radius: 0rem">No data Found</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
     {% else %}
-    <h1 align="center">Captcha detected !</h1>
-    <h2 align="center">You have done too many requests to the API</h2>
+    <h1 align="center">Error: Your search yielded no results</h1>
+    <h4 align="center">This problem occurs when your requested product does not exist on the sites and APIs used by the search algorithm</h4>
     {% endif %}
 {% endblock %}

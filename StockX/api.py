@@ -79,7 +79,8 @@ def APIsearchSX(query, proxies):
     if "captcha" in str(output):
         print("captcha !")
         return None
-
+    if not "products" in output or len(output['Products']) < 1 or not "urlKey" in output['Products'][0]:
+        return None
     url2 = f"https://stockx.com/api/products/{output['Products'][0]['urlKey']}?includes=market&currency=EUR&country=FR"
     if proxies is not None:
         html2 = requests.get(url=url2, headers=headers, proxies=proxies[randint(0, len(proxies) - 1)])

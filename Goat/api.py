@@ -114,6 +114,8 @@ def APIsearchSKU(sku, proxies):
     #html = requests.get(url=url, headers=headers, proxies=proxies[randint(0, len(proxies) - 1)])
     html = requests.post(url=url, data=body, headers=headers, proxies=proxies[randint(0, len(proxies) - 1)])
     output = json.loads(html.text)
+    if not "results" in output or len(output["results"]) < 1 or not "hits" in output["results"][0] or len(output["results"][0]["hits"]) < 1:
+        return None
     productID = output['results'][0]['hits'][0]['product_template_id']
     productURL = f"https://www.goat.com/sneakers/{str(output['results'][0]['hits'][0]['slug'])}"
     productSKU = output['results'][0]['hits'][0]['sku']
@@ -133,6 +135,8 @@ def APIsearchSKU(sku, proxies):
 
 def APIsearchG(sku, proxies):
     item = APIsearchSKU(sku, proxies)
+    if item is None:
+        return None
     sizes = GOATgetSizesAPI(item['templateID'], item['brand'], proxies)
     result = APIProductG(item, sizes)
     result.printInfos()
